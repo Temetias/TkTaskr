@@ -45,7 +45,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    background-image: url("../static/img/bgPlaceHold.png");
+    background-image: url("../assets/bgPlaceHold.png");
 }
 
 .nav-bar {
