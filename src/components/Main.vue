@@ -17,6 +17,7 @@
 import TkButton from "@/TkComponents/TkButton";
 import TaskList from "@/components/TaskList";
 import NewTask from "@/components/NewTask";
+import OptionsMenu from "@/components/OptionsMenu";
 
 export default {
     name: "main-view",
@@ -31,6 +32,7 @@ export default {
         TkButton,
         TaskList,
         NewTask,
+        OptionsMenu,
     },
     mounted() {
         this.$store.dispatch("START_TASKLIST_SYNC");

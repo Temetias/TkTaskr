@@ -19,6 +19,7 @@ export const textcontent = {
             "November",
             "December",
         ],
+        language: "Language",
     },
     fi: {
         login: "Kirjaudu sisään",
@@ -40,6 +41,7 @@ export const textcontent = {
             "Marraskuu",
             "Joulukuu",
         ],
+        language: "Kieli",
     },
     swe: {
         login: "Logga in",
@@ -61,5 +63,6 @@ export const textcontent = {
             "November",
             "December",
         ],
+        language: "Språk",
     },
 }

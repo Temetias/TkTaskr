@@ -2,14 +2,14 @@
     <div id="app">
         <header class="nav-bar">
             <span>TkTaskr</span>
-            <LanguageSelection class="language-selection-component"></LanguageSelection>
+            <OptionsMenu class="options-menu-component"></OptionsMenu>
         </header>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-import LanguageSelection from "@/components/LanguageSelection";
+import OptionsMenu from "@/components/OptionsMenu";
 
 export default {
     name: "app",
@@ -22,7 +22,7 @@ export default {
         this.$router.replace({ name: "main" }); // TODO: swap back to login
     },
     components: {
-        LanguageSelection,
+        OptionsMenu,
     },
 };
 </script>
@@ -45,7 +45,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    background-image: url("../assets/bgPlaceHold.png");
+    background-image: url("assets/bgPlaceHold.png");
 }
 
 .nav-bar {
@@ -74,7 +74,7 @@ header span {
     font-weight: 400;
 }
 
-.language-selection-component {
+.options-menu-component {
     padding-top: 9px;
 }
 </style>
