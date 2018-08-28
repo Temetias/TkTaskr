@@ -1,6 +1,6 @@
 <template>
     <div id="new-task">
-        <h1 class="new-task-title">New task</h1>
+        <h1 class="new-task-title">{{ getText("new_task") }}</h1>
         <input class="new-task-input" 
             type="text"
             v-model="task.title"
@@ -18,22 +18,22 @@
             <TkToggleButton id="new-task-priority low"
                 v-model="states.priorityLow"
                 @click="priorityOperator(1)">
-                Low
+                {{ getText("low") }}
             </TkToggleButton>
             <TkToggleButton id="new-task-priority medium"
                 v-model="states.priorityMedium"
                 @click="priorityOperator(2)">
-                Medium
+                {{ getText("medium") }}
             </TkToggleButton>
             <TkToggleButton id="new-task-priority high"
                 v-model="states.priorityHigh"
                 @click="priorityOperator(3)">
-                High
+                {{ getText("high") }}
             </TkToggleButton>
         </div>
         <TkButton id="new-task-submit"
             @click="submitTask()">
-            Submit
+            {{ getText("submit") }}
         </TkButton>
     </div>
 </template>
@@ -41,6 +41,7 @@
 <script>
 import TkToggleButton from "@/TkComponents/TkToggleButton";
 import TkButton from "@/TkComponents/TkButton";
+import { textcontent } from "@/texts";
 
 export default {
     name: "new-task",
@@ -87,6 +88,9 @@ export default {
                     return;
             }
         },
+        getText(text) {
+            return textcontent[this.$store.getters.LANGUAGE][text];
+        },
     },
     computed: {
         task() {
@@ -123,7 +127,7 @@ export default {
     display: flex;
     
     width: 100vw;
-    height: 100%;
+    height: calc(100% - 56px);
     padding: 2vh 5vw;
     flex-direction: column;
     background-color: whitesmoke;

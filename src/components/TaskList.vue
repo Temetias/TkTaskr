@@ -4,7 +4,10 @@
         <TaskListItem v-for="(task, key, index) in tasklist"
             :key="key"
             :task="task"
-            @focused="onItemFocus(index)">
+            :focusedItemIndex="states.focusedItemIndex"
+            :index="index"
+            @focused="onItemFocus(index)"
+            @unfocused="onItemFocus()">
         </TaskListItem>
     </div>
 </template>
@@ -15,13 +18,23 @@ import { textcontent } from "@/texts";
 
 export default {
     name: "task-list",
+    data() {
+        return {
+            states: {
+                focusedItemIndex: -1,
+            }
+        };
+    },
     methods: {
         getText(text) {
             return textcontent[this.$store.getters.LANGUAGE][text];
         },
         onItemFocus(index) {
-            // TODO
-            console.log(index);
+            if (index !== undefined) {
+                this.states.focusedItemIndex = index;
+            } else {
+                this.states.focusedItemIndex = -1;
+            }
         },
     },
     computed: {

@@ -1,6 +1,6 @@
 <template>
     <div class="task-list-item"
-        @click="states.focused = true, $emit('focused')">
+        @click="handleFocus()">
         <div class="task-list-item-left">
             <div class="task-list-item-status-container"
                 :class="getIcon(task.status)">
@@ -19,10 +19,12 @@
                 </div>
             </div>
             <div class="task-list-item-content">
-                <div class="task-list-item-description"
-                    v-if="states.focused">
-                    {{ task.description }}
-                </div>
+                <transition name="grow-down">
+                    <div class="task-list-item-description"
+                        v-if="focusedItemIndex === index">
+                        {{ task.description }}
+                    </div>
+                </transition>
                 <div class="task-list-item-priority">
                     {{ task.priority }}
                 </div>
@@ -66,13 +68,23 @@ export default {
                 return "check";
             }
         },
+        handleFocus() {
+            if (this.focusedItemIndex === this.index) {
+                this.$emit("unfocused");
+            } else {
+                this.$emit("focused");
+            }
+        },
     },
-    props: ["task"],
+    props: ["task", "focusedItemIndex", "index"],
 }
 </script>
 
 <style scoped>
 .task-list-item {
+    display: flex;
+    flex-direction: row;
+
     margin: 5px;
     padding: 10px;
     border-radius: 18px;
@@ -82,12 +94,8 @@ export default {
     -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
 }
-.task-list-item-left, .task-list-item-right {
-    display: inline-block;
-    white-space: nowrap;
-}
 .task-list-item-left {
-    float: left;
+    width: 40px;
 }
 .task-list-item-right {
     padding-left: 10px;
@@ -108,9 +116,24 @@ export default {
     background-color: tomato;
 }
 .walking {
-    background-color: yellow;
+    background-color: rgb(233, 196, 75);
 }
 .check {
-    background-color: green;
+    background-color: rgb(90, 179, 90);
+}
+.task-list-item-description {
+    max-height: 90vh;
+}
+/*Vue transitions
+
+TODO: these are just crap, make something better*/
+.grow-down-enter-active {
+    transition: max-height 1s linear;
+}
+.grow-down-leave-active {
+    transition: max-height .3s linear;
+}
+.grow-down-enter, .grow-down-leave-to {
+    max-height: 0px;
 }
 </style>
