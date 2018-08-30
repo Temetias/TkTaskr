@@ -4,12 +4,12 @@
         <input class="new-task-input" 
             type="text"
             v-model="task.title"
-            placeholder="Title"
+            :placeholder="getText('title')"
             maxlength="30">
         <textarea class="new-task-textarea"
             type="text"
             v-model="task.description"
-            placeholder="Description"
+            :placeholder="getText('description')"
             maxlength="200"
             rows="5">
         </textarea>
@@ -127,7 +127,7 @@ export default {
     display: flex;
     
     width: 100vw;
-    height: calc(100% - 56px);
+    height: 100%;
     padding: 2vh 5vw;
     flex-direction: column;
     background-color: whitesmoke;

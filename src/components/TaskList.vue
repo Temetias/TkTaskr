@@ -1,14 +1,18 @@
 <template>
     <div id="task-list">
-        <span class="task-list-title">{{ getText("tasks") }}</span>
-        <TaskListItem v-for="(task, key, index) in tasklist"
-            :key="key"
-            :task="task"
-            :focusedItemIndex="states.focusedItemIndex"
-            :index="index"
-            @focused="onItemFocus(index)"
-            @unfocused="onItemFocus()">
-        </TaskListItem>
+        <v-touch @swipeleft="$emit('leftSwipe')">
+            <div class="task-list-swipe-area">
+                <span class="task-list-title">{{ getText("tasks") }}</span>
+                <TaskListItem v-for="(task, key, index) in tasklist"
+                    :key="key"
+                    :task="task"
+                    :focusedItemIndex="states.focusedItemIndex"
+                    :index="index"
+                    @focused="onItemFocus(index)"
+                    @unfocused="onItemFocus()">
+                </TaskListItem>
+            </div>
+        </v-touch>
     </div>
 </template>
 
@@ -49,6 +53,10 @@ export default {
 </script>
 
 <style scoped>
+.task-list-swipe-area {
+    width: 100%;
+    height: calc(96vh - 56px);
+}
 #task-list {
     width: 100vw;
     height: calc(100vh - 56px);

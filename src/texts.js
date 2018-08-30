@@ -25,6 +25,8 @@ export const textcontent = {
         medium: "Medium",
         high: "high",
         submit: "Submit",
+        description: "Description",
+        title: "Title",
     },
     fi: {
         login: "Kirjaudu sisään",
@@ -52,6 +54,8 @@ export const textcontent = {
         medium: "Keskitaso",
         high: "Korkea",
         submit: "Luo",
+        description: "Kuvaus",
+        title: "Otsikko",
     },
     swe: {
         login: "Logga in",
@@ -79,5 +83,7 @@ export const textcontent = {
         medium: "Medium",
         high: "Hög",
         submit: "Lämna",
+        description: "Beskrivning",
+        title: "Titel",
     },
 }

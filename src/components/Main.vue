@@ -9,7 +9,10 @@
                 icon="plus"
                 :class="{ 'rotate': states.creatingTask }"/>
         </TkButton>
-        <TaskList></TaskList>
+        <TaskList class="view-item" 
+            @leftSwipe="swipe('left')"
+            :class="{ 'view-item-translate-right': states.viewPositionOperator === 1 }">
+        </TaskList>
     </div>
 </template>
 
@@ -25,6 +28,7 @@ export default {
         return {
             states: {
                 creatingTask: false,
+                viewPositionOperator: 0,
             },
         };
     },
@@ -37,10 +41,32 @@ export default {
     mounted() {
         this.$store.dispatch("START_TASKLIST_SYNC");
     },
+    methods: {
+        swipe(swipe) {
+            switch (swipe) {
+                case "left": 
+                    this.states.viewPositionOperator = 1;
+                    console.log("left");
+                    return;
+                case "right":
+                    console.log("right");
+                    return;
+            };
+        },
+    }
 };
 </script>
 
 <style scoped>
+#main-view {
+    position: fixed;
+    top: 56px;
+    left: 0;
+
+    height: calc(100vh - 56px);
+    width: 100vw;
+    overflow: hidden;
+}
 #add-new {
     position: fixed;
     bottom: 1vh;
@@ -50,13 +76,19 @@ export default {
     height: 50px;
     transition: background-color .3;
 }
+.view-item {
+    transition: transform .5s;
+}
+.view-item-translate-right {
+    transform: translateX(-100%);
+}
 .cancel {
     background-color: red;
 }
 .add-new-icon {
     height: 100%;
     width: 100%;
-    transition: transform .3s;
+    transition: transform .1s;
 }
 .rotate {
     transform: rotate(45deg);
