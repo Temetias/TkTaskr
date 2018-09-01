@@ -9,18 +9,26 @@
                 icon="plus"
                 :class="{ 'rotate': states.creatingTask }"/>
         </TkButton>
-        <TaskList class="view-item" 
+        <TaskListView class="view-item" 
             @leftSwipe="swipe('left')"
-            :class="{ 'view-item-translate-right': states.viewPositionOperator === 1 }">
-        </TaskList>
+            @rightSwipe="swipe('right')"
+            :class="{ 'view-item-translate-right': states.viewPositionOperator === -1,
+                'view-item-translate-left': states.viewPositionOperator === 1 }">
+        </TaskListView>
+        <MapView class="view-item"
+            @rightSwipe="swipe('right')"
+            :class="{ 'view-item-translate-right': states.viewPositionOperator === -1,
+                'view-item-translate-left': states.viewPositionOperator === 1 }">
+        </MapView>
     </div>
 </template>
 
 <script>
 import TkButton from "@/TkComponents/TkButton";
-import TaskList from "@/components/TaskList";
+import TaskListView from "@/components/TaskListView";
 import NewTask from "@/components/NewTask";
 import OptionsMenu from "@/components/OptionsMenu";
+import MapView from "@/components/MapView";
 
 export default {
     name: "main-view",
@@ -34,9 +42,10 @@ export default {
     },
     components: {
         TkButton,
-        TaskList,
+        TaskListView,
         NewTask,
         OptionsMenu,
+        MapView,
     },
     mounted() {
         this.$store.dispatch("START_TASKLIST_SYNC");
@@ -45,11 +54,12 @@ export default {
         swipe(swipe) {
             switch (swipe) {
                 case "left": 
-                    this.states.viewPositionOperator = 1;
-                    console.log("left");
+                    this.states.viewPositionOperator++;
+                    console.log("left " + this.states.viewPositionOperator);
                     return;
                 case "right":
-                    console.log("right");
+                    this.states.viewPositionOperator--;
+                    console.log("right " + this.states.viewPositionOperator);
                     return;
             };
         },
@@ -71,15 +81,21 @@ export default {
     position: fixed;
     bottom: 1vh;
     right: 1vh;
+    z-index: 10;
+
     border-radius: 50%;
     width: 50px;
     height: 50px;
+    
     transition: background-color .3;
 }
 .view-item {
     transition: transform .5s;
 }
 .view-item-translate-right {
+    transform: translateX(100%);
+}
+.view-item-translate-left {
     transform: translateX(-100%);
 }
 .cancel {

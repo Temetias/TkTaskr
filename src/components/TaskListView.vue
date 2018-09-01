@@ -1,6 +1,7 @@
 <template>
     <div id="task-list">
-        <v-touch @swipeleft="$emit('leftSwipe')">
+        <v-touch @swipeleft="$emit('leftSwipe')"
+            @swiperight="$emit('rightSwipe')">
             <div class="task-list-swipe-area">
                 <span class="task-list-title">{{ getText("tasks") }}</span>
                 <TaskListItem v-for="(task, key, index) in tasklist"
@@ -58,6 +59,10 @@ export default {
     height: calc(96vh - 56px);
 }
 #task-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+
     width: 100vw;
     height: calc(100vh - 56px);
     padding: 2vh 5vw;

@@ -52,6 +52,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    z-index: 2;
 
     height: 56px;
     width: 100vw;

@@ -98,6 +98,6 @@ export default {
     transition: transform .3s;
 }
 .slide-down-enter, .slide-down-leave-to {
-    transform: scaleY(0);
+    transform: translateY(-100%);
 }
 </style>

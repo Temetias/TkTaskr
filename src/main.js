@@ -7,16 +7,15 @@ import firebase from "firebase";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faCheck, faExclamation, faWalking, faCog, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { config } from "@/firebaseConfig";
+import { firebaseConfig } from "@/firebaseConfig";
 import VueTouch from "vue-touch";
 
 library.add(faPlus, faCheck, faExclamation, faWalking, faCog, faCaretUp);
 
 Vue.use(VueResource);
 Vue.use(VueTouch);
-Vue.config.productionTip = false;
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

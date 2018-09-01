@@ -26,6 +26,9 @@ export default new Vuex.Store({
         LANGUAGES: (state) => {
             return state.languages;
         },
+        MAP: (state) => {
+            return state.map;
+        },
     },
     mutations: {
         SET_USER: (state, payload) => {
