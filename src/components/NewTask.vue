@@ -125,6 +125,7 @@ export default {
 #new-task {
     position: absolute;
     display: flex;
+    z-index: 10;
     
     width: 100vw;
     height: 100%;

@@ -111,12 +111,15 @@ h1 {
     display: flex;
     
     width: 100vw;
-    height: 100%;
+    height: calc(100vh - 56px);
     padding: 2vh 5vw;
     flex-direction: column;
 }
 .logo-container {
     align-self: center;
+}
+.logo-container > img {
+    max-height: 40vh;
 }
 .login-loading {
     margin-bottom: -9%;
